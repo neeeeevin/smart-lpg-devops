@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ../backend
+    container_name: lpg-backend
+    env_file:
+      - ../backend/.env
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: ../frontend
+    container_name: lpg-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
