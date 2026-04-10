@@ -1,5 +1,4 @@
-const API_BASE_URL = "https://smart-lpg-devops.onrender.com";
-fetch(`${API_BASE_URL}/api/whatever`)
+const API = "https://smart-lpg-devops.onrender.com/api/lpg";
 let usageChartInstance = null;
 
 function getUserId() {
@@ -8,7 +7,17 @@ function getUserId() {
 
 function showMessage(message, type = "info") {
   const box = document.getElementById("messageBox");
-  box.classList.remove("hidden", "bg-red-100", "text-red-700", "bg-green-100", "text-green-700", "bg-blue-100", "text-blue-700", "bg-yellow-100", "text-yellow-800");
+  box.classList.remove(
+    "hidden",
+    "bg-red-100",
+    "text-red-700",
+    "bg-green-100",
+    "text-green-700",
+    "bg-blue-100",
+    "text-blue-700",
+    "bg-yellow-100",
+    "text-yellow-800"
+  );
 
   if (type === "error") {
     box.classList.add("bg-red-100", "text-red-700");
@@ -186,21 +195,21 @@ function updateAlertBanner(summary) {
   banner.classList.add("hidden");
   banner.className = "hidden rounded-2xl px-5 py-4 font-medium";
 
-  if (summary.alerts.empty) {
+  if (summary.alerts?.empty) {
     banner.classList.remove("hidden");
     banner.classList.add("bg-red-100", "text-red-700");
     banner.textContent = "Gas level is effectively empty. Immediate refill is required.";
     return;
   }
 
-  if (summary.alerts.critical) {
+  if (summary.alerts?.critical) {
     banner.classList.remove("hidden");
     banner.classList.add("bg-orange-100", "text-orange-700");
     banner.textContent = "Critical gas level detected. Delivery should be arranged urgently.";
     return;
   }
 
-  if (summary.alerts.lowGas) {
+  if (summary.alerts?.lowGas) {
     banner.classList.remove("hidden");
     banner.classList.add("bg-yellow-100", "text-yellow-800");
     banner.textContent = "Low gas alert. Refill should be booked soon.";
@@ -220,7 +229,7 @@ function updateCards(summary) {
   document.getElementById("refillDateCard").textContent = summary.predictedRefillDate
     ? formatShortDate(summary.predictedRefillDate)
     : "Not enough data";
-  document.getElementById("statusCard").textContent = summary.currentStatus.toUpperCase();
+  document.getElementById("statusCard").textContent = summary.currentStatus?.toUpperCase() || "-";
   document.getElementById("monthlyUsageCard").textContent = `${summary.monthlyUsage} kg`;
   document.getElementById("efficiencyCard").textContent = `${summary.efficiencyScore}/100`;
 
