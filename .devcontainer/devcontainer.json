@@ -7,10 +7,9 @@
       "version": "latest",
       "helm": "latest",
       "minikube": "latest"
-    },
-    "ghcr.io/devcontainers/features/ansible:1": {}
+    }
   },
-  "postCreateCommand": "node --version && docker --version && kubectl version --client && ansible --version",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ansible && node --version && docker --version && kubectl version --client && ansible --version",
   "forwardPorts": [8080, 5000, 30080],
   "portsAttributes": {
     "8080": {
