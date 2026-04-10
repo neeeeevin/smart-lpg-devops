@@ -1,4 +1,5 @@
 const API_BASE_URL = "https://smart-lpg-devops.onrender.com";
+fetch(`${API_BASE_URL}/api/whatever`)
 let usageChartInstance = null;
 
 function getUserId() {
