@@ -1,0 +1,26 @@
+{
+  "name": "smart-lpg-devops",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "latest",
+      "helm": "latest",
+      "minikube": "latest"
+    },
+    "ghcr.io/devcontainers/features/ansible:1": {}
+  },
+  "postCreateCommand": "node --version && docker --version && kubectl version --client && ansible --version",
+  "forwardPorts": [8080, 5000, 30080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Frontend"
+    },
+    "5000": {
+      "label": "Backend"
+    },
+    "30080": {
+      "label": "Kubernetes Frontend"
+    }
+  }
+}
